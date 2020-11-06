@@ -11,9 +11,6 @@ class Position(ORM):
         self.shares = shares
 
     def save(self):
-        """Call _insert if the row does not exist in the database, otherwise
-        call _update
-        """
         if self.pk:
             self._update()
         else:
@@ -41,22 +38,22 @@ class Position(ORM):
             
 
     @classmethod
-    def positions_for_user(cls, account_pk):
+    def positions_for_user(cls, accounts_pk):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
-            sql = """SELECT * FROM positions WHERE api_key=?"""
-            cursor.execute(sql, (account_pk,))
+            sql = """SELECT * FROM positions WHERE accounts_pk=?"""
+            cursor.execute(sql, (accounts_pk,))
             positions = cursor.fetchall()
             return positions
 
     @classmethod
-    def position_for_ticker(cls, account_pk, ticker):
+    def position_for_ticker(cls, accounts_pk, ticker):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
         sql = """SELECT * FROM positions
-        WHERE account_pk=?, ticker=?;
+        WHERE accounts_pk=? AND ticker=?;
         """
-        values = (account_pk, ticker)
+        values = (accounts_pk, ticker)
         cursor.execute(sql, values)
         position = cursor.fetchone()
         if position:

@@ -29,8 +29,6 @@ class Account(ORM):
             cursor.execute(sql, values)
 
     def _update(self):
-        """Add a new account to the database
-        """
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
             sql = """UPDATE accounts SET api_key=?, balance=? WHERE pk=?"""
@@ -48,7 +46,7 @@ class Account(ORM):
             position.shares += volume
         else:
             position = Position(self.pk, ticker, volume)
-        trade = Trade(self.pk, ticker, volume, price)
+        trade = Trade(self.pk, ticker, volume, price, 1)
 
         trade.save()
         position.save()
@@ -65,7 +63,7 @@ class Account(ORM):
 
         self.balance += price * volume
         position.shares -= volume
-        trade = Trade(self.pk, ticker, volume, price)
+        trade = Trade(self.pk, ticker, volume, price, 0)
 
         trade.save()
         position.save()

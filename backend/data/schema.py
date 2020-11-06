@@ -31,7 +31,7 @@ def schema(dbpath="rtrader.db"):
             ticker VARCHAR(5),
             volume INTEGER,
             price FLOAT,
-            trade_type BOOL
+            trade_type BOOL,
             timestamp FLOAT,
             FOREIGN KEY (accounts_pk) REFERENCES accounts(pk)
         );""")

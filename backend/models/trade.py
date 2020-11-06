@@ -4,8 +4,8 @@ from .orm import ORM
 
 class Trade(ORM):
 
-    def __init__(self, account_pk, ticker, volume, price, trade_type, pk=None):
-        self.account_pk = account_pk
+    def __init__(self, accounts_pk, ticker, volume, price, trade_type, pk=None):
+        self.accounts_pk = accounts_pk
         self.ticker = ticker
         self.volume = volume
         self.price = price
@@ -13,21 +13,21 @@ class Trade(ORM):
         self.timestamp = time.time()
         self.pk = pk
 
-    def insert(self):
+    def _insert(self):
         with sqlite3.connect(self.dbpath) as conn:
             cursor = conn.cursor()
-            sql = """INSERT INTO trades (account_pk, ticker, volume, price, trade_type, timestamp)
-                VALUES (?,?,?,?,?);
+            sql = """INSERT INTO trades (accounts_pk, ticker, volume, price, trade_type, timestamp)
+                VALUES (?,?,?,?,?,?);
               """
-            values = (self.account_pk, self.ticker, self.volume, self.price, self.trade_type, self.timestamp)
+            values = (self.accounts_pk, self.ticker, self.volume, self.price, self.trade_type, self.timestamp)
             cursor.execute(sql, values)
 
     @classmethod
-    def all_for_user(cls, account_pk):
+    def all_for_user(cls, accounts_pk):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
-            sql = """SELECT * FROM accounts WHERE account_pk=?"""
-            cursor.execute(sql, (account_pk,))
+            sql = """SELECT * FROM accounts WHERE accounts_pk=?"""
+            cursor.execute(sql, (accounts_pk,))
             return cursor.fetchall()
 
 

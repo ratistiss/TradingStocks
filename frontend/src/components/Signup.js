@@ -1,4 +1,4 @@
-import React, { setState } from 'react';
+import React, { useState } from 'react';
 import { postRequest } from './models'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="primary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Quarantined
@@ -47,15 +47,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Signup() {
+  const [new_name, setNew_Name] = useState("");
+  const [pw, setPw] = useState("");
+  const [total, setTotal] = useState(0);
   const classes = useStyles();
-//   const [new_name, setNew_Name] = setState("");
-//   const [pw, setPw] = setState("");
-//   const [total, setTotal] = setState(0);
 
   const create = async () => {
-    // const data = await postRequest("create", {"username": new_name, "password":pw, "balance":total});
+    console.log(new_name)
+    const data = await postRequest("create", {"username": new_name, "password": pw, "balance": total});
     // data is likely an object, will need to access a certian key
-    // this.setToken(data.session_id)
+    console.log(data)
+    this.setToken(data.session_id)
 }
 
   return (
@@ -79,7 +81,7 @@ export default function Signup() {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                // onChange={e => setNew_Name(e.target.value)}
+                onChange={e => setNew_Name(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -92,7 +94,7 @@ export default function Signup() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                // onChange={e => setPw(e.target.value)}
+                onChange={e => setPw(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,13 +105,7 @@ export default function Signup() {
                 id="email"
                 label="Balance"
                 name="email"
-                // onChange={e => setTotal(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to lose all of my money to insider trading and ill advised stock tips."
+                onChange={e => setTotal(e.target.value)}
               />
             </Grid>
           </Grid>
@@ -119,7 +115,7 @@ export default function Signup() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={create}
+            onClick={e => create(new_name,pw,total)}
           >
             Join Us
           </Button>

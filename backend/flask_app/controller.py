@@ -26,7 +26,8 @@ def login():
         account.api_key = account.random_api_key()
         account.save()
         return jsonify({"session_id": account.api_key, 
-                    "username": account.username})
+                    "username": account.username,
+                    "balance": account.balance})
     return jsonify({"session_id": "", 
                     "username": ""})
 
@@ -69,7 +70,7 @@ def sell():
     try:
         account.sell(data.get("ticker"), data.get("volume"))
     except InsufficientFundsError:
-        return jsonify({"error": "insufficient funds"})
+        return jsonify({"error": "insufficient shares"})
     return jsonify({"success":True})
 
 # @app.route("/api/<api_token>/portfolio", methods=["GET"])
@@ -84,17 +85,20 @@ def portfolio():
     positions = []
     if account:
         positions = account.portfolio()
-    return jsonify({"username": account.username, "positions": positions})
+    return jsonify({"username": account.username, "balance": account.balance, "positions": positions})
 
 @app.route("/api/transactions", methods=["POST"])
 def transactions():
     data = request.get_json()
-    # use token to authenticate user
-    account = Account.api_authenticate(data.get("token"))
+    token = data.get("token")
+    account = Account.api_authenticate(token)
     # get data from request
-    account.save()
+    # account.save()
+    trades = []
+    if account:
+        trades = account.my_trades()
     # if the account exists:
-    return jsonify({})
+    return jsonify({"trades": trades})
 
 @app.route("/api/logout/<token>", methods=["GET"])
 def logout():

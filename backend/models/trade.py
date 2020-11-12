@@ -26,7 +26,7 @@ class Trade(ORM):
     def all_for_user(cls, accounts_pk):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
-            sql = """SELECT * FROM accounts WHERE accounts_pk=?"""
+            sql = """SELECT * FROM trades WHERE accounts_pk=?"""
             cursor.execute(sql, (accounts_pk,))
             return cursor.fetchall()
 

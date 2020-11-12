@@ -12,7 +12,7 @@ class Position(ORM):
 
     def save(self):
         if self.pk:
-            self._update()
+            self._update(self.pk)
         else:
             self._insert()
 

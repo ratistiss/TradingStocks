@@ -37,13 +37,13 @@ class Account(ORM):
     def buy(self, ticker, volume):
         price = get_price(ticker)
 
-        if price * volume > self.balance:
+        if price * int(volume) > self.balance:
             raise InsufficientFundsError
 
-        self.balance -= price * volume
+        self.balance -= price * int(volume)
         position = Position.position_for_ticker(self.pk, ticker)
         if position:
-            position.shares += volume
+            position.shares += int(volume)
         else:
             position = Position(self.pk, ticker, volume)
         trade = Trade(self.pk, ticker, volume, price, 1)
@@ -58,11 +58,11 @@ class Account(ORM):
 
         if not position:
             return False
-        if position.shares > volume:
+        if position.shares < int(volume):
             return False
 
-        self.balance += price * volume
-        position.shares -= volume
+        self.balance += price * int(volume)
+        position.shares -= int(volume)
         trade = Trade(self.pk, ticker, volume, price, 0)
 
         trade.save()

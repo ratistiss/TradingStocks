@@ -26,7 +26,7 @@ const Login = (setToken) => {
 
 
     return(
-        <div className="login">
+        <div className="s">
             <input type="text" onChange={e => setName(e.target.value)} />
             <input type="text" onChange={e => setPassword(e.target.value)} />
             <button type="submit" onClick={e => getLogin(name,password)}>Submit</button>

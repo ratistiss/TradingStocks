@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Quote from './Quote';
-import Transaction from './Transactions';
+// import Transaction from './Transactions';
 import { useStateWithSessionStorage } from './models';
 
 const Trade = () => {
@@ -12,8 +12,10 @@ const Trade = () => {
     <div className='trade'>
       <h2>Balance: ${balance}</h2>
       <div>
-        <input type="text" onChange={e => setTick(e.target.value)} />
-        <Quote tick={tick}/>
+        <input type="text" 
+          onKeyDown={e => /[\+\-\.\,\d]$/.test(e.key) && e.preventDefault()} 
+          onChange={e => setTick(e.target.value)} />
+        <Quote tick={tick.toUpperCase()}/>
       </div>
     </div>
   )

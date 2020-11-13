@@ -69,7 +69,7 @@ def sell():
     # if the account exists:
     try:
         account.sell(data.get("ticker"), data.get("volume"))
-    except InsufficientFundsError:
+    except:
         return jsonify({"error": "insufficient shares"})
     return jsonify({"success":True})
 

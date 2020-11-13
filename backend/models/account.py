@@ -9,6 +9,7 @@ from .util import get_price
 class InsufficientFundsError(Exception):
     pass
 
+
 class Account(ORM):
 
     def __init__(self, username, password_hash, api_key, balance, pk=None):
@@ -57,9 +58,10 @@ class Account(ORM):
         price = get_price(ticker)
 
         if not position:
-            return False
+            raise Exception
         if position.shares < int(volume):
-            return False
+            raise Exception
+            # return False
 
         self.balance += price * int(volume)
         position.shares -= int(volume)

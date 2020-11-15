@@ -41,7 +41,7 @@ class Position(ORM):
     def positions_for_user(cls, accounts_pk):
         with sqlite3.connect(cls.dbpath) as conn:
             cursor = conn.cursor()
-            sql = """SELECT * FROM positions WHERE accounts_pk=?"""
+            sql = """SELECT * FROM positions WHERE accounts_pk=? AND shares>=1"""
             cursor.execute(sql, (accounts_pk,))
             positions = cursor.fetchall()
             return positions

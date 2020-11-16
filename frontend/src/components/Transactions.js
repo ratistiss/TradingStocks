@@ -7,8 +7,6 @@ import { postRequest } from './models';
 const Transaction = (props) => {
     const [shares, setShares] = useState(0);
     const [ticker, setTicker] = useState(props.tick);
-
-    // const [trade_type, setTradeType] = useState("")
     const [errorFunds, setErrorFunds] = useState(false)
     const [errorShares, setErrorShares] = useState(false)
     const buy = 'buy';

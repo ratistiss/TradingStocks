@@ -1,5 +1,6 @@
 body {
   font-family: 'Open Sans', sans-serif;
+  color: white
 }
 
 .App {
@@ -20,24 +21,8 @@ body {
 }
 
 .navtext{
-  color: white;
   font-weight: bold;
+  color: white;
 }
-
-.home {
-  
-
-}
-
-.trade {
-  
-
-}
-
-.login {
-  
-
-}
-
 
 

@@ -28,7 +28,7 @@ const Login = (setToken) => {
     return(
         <div className="s">
             <input type="text" onChange={e => setName(e.target.value)} />
-            <input type="text" onChange={e => setPassword(e.target.value)} />
+            <input type="password" onChange={e => setPassword(e.target.value)} />
             <button type="submit" onClick={e => getLogin(name,password)}>Submit</button>
             <Link to="/signup">Sign up!</Link>
             {err ? <h3>Oh No! we have an error, do you have an account?</h3> : <></>}

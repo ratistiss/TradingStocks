@@ -58,13 +58,13 @@ const Home = () => {
   }, [setBalance])
 
   return (
-    <div className='home'>
+    <div>
       <div>
         <h2>{username}</h2>
         <h2>Balance: ${balance}</h2>
         <div className="table" align="center">
           <TableContainer className={classes.tableContainer} component={Paper}>
-            <Table className={classes.table} aria-label="customized table" align='center'>
+            <Table className={classes.table} aria-label="customized table" align="center">
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="center">Ticker</StyledTableCell>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { postRequest } from './models';
-import { useStateWithSessionStorage } from './models';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -26,7 +25,7 @@ function History() {
   
   const StyledTableRow = withStyles((theme) => ({
     root: {
-      '&:nth-of-type(odd)': {
+      "&:nth-of-type(odd)": {
         backgroundColor: theme.palette.action.hover,
       },
     },
@@ -47,17 +46,16 @@ function History() {
     const getTransactions = async () => {
       const data = await postRequest("transactions", {token: sessionStorage.getItem("token")});
       setTransactions(data.trades)
-      console.log(data)
     }
     getTransactions();
   }, [])
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: "100%" }}>
       <h2>Balance: ${sessionStorage.getItem("balance")}</h2>
       <div align="center">
         <TableContainer className={classes.tableContainer} component={Paper}>
-            <Table className={classes.table} aria-label="customized table" align='center'>
+            <Table className={classes.table} aria-label="customized table" align="center">
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="center">Ticker</StyledTableCell>
@@ -74,7 +72,7 @@ function History() {
                   <StyledTableCell align="center">{row[2]}</StyledTableCell>
                   <StyledTableCell align="center">{row[3]}</StyledTableCell>
                   <StyledTableCell align="center">{row[4]}</StyledTableCell>
-                  <StyledTableCell align="center">{row[5] ? 'Buy' : 'Sell'}</StyledTableCell>
+                  <StyledTableCell align="center">{row[5] ? "Buy" : "Sell"}</StyledTableCell>
                   <StyledTableCell align="center">{new Date(row[6] * 1000).toLocaleString("en-US")}</StyledTableCell>
                 </StyledTableRow>
                 ))}

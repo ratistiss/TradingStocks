@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import Quote from './Quote';
-// import Transaction from './Transactions';
 import { useStateWithSessionStorage } from './models';
 
 const Trade = () => {
-  const [balance, setBalance] = useStateWithSessionStorage("balance", 0);
+  const [balance] = useStateWithSessionStorage("balance", 0);
   const [tick, setTick] = useState("")
 
 
   return (
-    <div className='trade'>
+    <div className="trade">
       <h2>Balance: ${balance}</h2>
       <div>
         <input type="text" 
@@ -21,4 +20,4 @@ const Trade = () => {
   )
 }
 
-export default Trade
+export default Trade;

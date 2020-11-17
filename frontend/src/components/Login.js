@@ -11,7 +11,6 @@ const Login = (setToken) => {
 
 
     const getLogin = async () => {
-        // const data = await postRequest("login", {"username": name, "password":password});
         try {
             const data = await postRequest("login", {"username": name, "password":password});
             sessionStorage.setItem("token", data.session_id);
@@ -26,7 +25,7 @@ const Login = (setToken) => {
 
 
     return(
-        <div className="s">
+        <div>
             <input type="text" onChange={e => setName(e.target.value)} />
             <input type="password" onChange={e => setPassword(e.target.value)} />
             <button type="submit" onClick={e => getLogin(name,password)}>Submit</button>
@@ -36,4 +35,4 @@ const Login = (setToken) => {
     )
 }
 
-export default Login
+export default Login;

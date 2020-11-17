@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './components/Footer'
 import { useStateWithSessionStorage } from './components/models';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from './components/NavBar';
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <NavBar token={token} setToken={setToken} setBalance={setBalance}/>
         <Router token={token} setToken={setToken} />
+        <Footer />
       </BrowserRouter>
     </div>
   );

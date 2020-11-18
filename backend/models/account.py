@@ -61,7 +61,7 @@ class Account(ORM):
             raise Exception
         if position.shares < int(volume):
             raise Exception
-            # return False
+            
 
         self.balance += price * int(volume)
         position.shares -= int(volume)

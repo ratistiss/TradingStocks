@@ -17,11 +17,8 @@ def price(ticker):
 
 @app.route("/api/login", methods=["POST"])
 def login():
-    # get data from request
     data = request.get_json()
-    # authenticate our account
     account = Account.login(data.get("username"), data.get("password"))
-    # if the account exists, return api_token
     if account:
         account.api_key = account.random_api_key()
         account.save()
@@ -43,14 +40,10 @@ def create_user():
 
 @app.route("/api/buy", methods=["POST"])
 def buy():
-    # use token to authenticate user
-    # get data from request
     data = request.get_json()
     account = Account.api_authenticate(data.get("token"))
-    #not account
     if not account:
         return jsonify({"error":"hey look at me Im an error"})
-    # if the account exists:
     try:
         account.buy(data.get("ticker"), data.get("volume"))
     except InsufficientFundsError:
@@ -60,28 +53,20 @@ def buy():
 @app.route("/api/sell", methods=["POST"])
 def sell():
     data = request.get_json()
-    # use token to authenticate user
     account = Account.api_authenticate(data.get("token"))
-    # get data from request
-    # if the account exists:
     if not account:
         return jsonify({"error":"hey look at me Im an error"})
-    # if the account exists:
     try:
         account.sell(data.get("ticker"), data.get("volume"))
     except:
         return jsonify({"error": "insufficient shares"})
     return jsonify({"success":True})
 
-# @app.route("/api/<api_token>/portfolio", methods=["GET"])
 @app.route("/api/portfolio", methods=["POST"])
-# def portfolio(api_token):
 def portfolio():
-    # use token to authenticate user
     data = request.get_json()
     token = data.get("token")
     account = Account.api_authenticate(token)
-    # if the account exists:
     positions = []
     if account:
         positions = account.portfolio()
@@ -92,18 +77,14 @@ def transactions():
     data = request.get_json()
     token = data.get("token")
     account = Account.api_authenticate(token)
-    # get data from request
-    # account.save()
     trades = []
     if account:
         trades = account.my_trades()
-    # if the account exists:
     return jsonify({"trades": trades})
 
 @app.route("/api/logout/<token>", methods=["GET"])
 def logout():
     data = request.get_json()
-    # use token to authenticate user
     account = Account.api_authenticate(data.get("token"))
     account.api_token = None
     account.save()

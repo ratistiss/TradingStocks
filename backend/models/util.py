@@ -19,9 +19,3 @@ def get_price(ticker):
         raise Exception("Ticker does not exist")
 
     return response.json().get("latestPrice")
-
-# WEB SCRAPING
-# def get_info(name):
-#     soup = BeautifulSoup(response.text, "html.parser")
-#     link = soup.find_all("a", attrs={"class":"image"})[0]
-#     return

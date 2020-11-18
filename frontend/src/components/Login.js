@@ -67,7 +67,7 @@ const Login = (setToken) => {
                 fullWidth
                 id="firstName"
                 label="Username"
-                onChange={e => setName(e.target.value)}
+                onChange={e => setName((e.target.value).trim())}
               />
             </Grid>
             <Grid item xs={12}>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Quote from './Quote';
 import { useStateWithSessionStorage } from './models';
 

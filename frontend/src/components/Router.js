@@ -29,4 +29,4 @@ const Router = ({ token, setToken }) => {
   )
 }
 
-export default Router
+export default Router;

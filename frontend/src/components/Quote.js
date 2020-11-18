@@ -98,9 +98,14 @@ const Quote = (props) => {
             </>
             }
 
-            {errorTicker ? <h3>Ticker not found</h3> : <></>}
+            {errorTicker ? <Typography className={classes.typography}
+                            component="h1" variant="h5"
+                            style={{paddingTop: "2%"}}>
+                            Ticker not found!
+                            </Typography> : <></>}
         </div>
 
     )
 }
-export default Quote
+
+export default Quote;

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { postRequest } from './models'
+import React, { useState } from 'react';
+import { postRequest } from './models';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -99,9 +99,11 @@ const Login = (setToken) => {
             </Button>
           </div>
       </div>
-      {err ? <h3>Oh No! we have an error, do you have an account?</h3> : <></>}
+      {err ? <Typography className={classes.typography} component="h1" variant="h5" style={{paddingTop: "2%"}}>
+          Oh no, your account wasn't found!
+        </Typography> : <></>}
     </Container>
     )
 }
 
-export default Login
+export default Login;

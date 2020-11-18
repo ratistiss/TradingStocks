@@ -20,8 +20,8 @@ export default function NavBar({ token, setToken, setBalance }) {
                 </>
                 :
                 <>
-                <Link className='navtext'>Login</Link>
-                <Link className='navtext' to="signup">Signup</Link>
+                <Link className='navtext' to="/login">Login</Link>
+                <Link className='navtext' to="/signup">Signup</Link>
                 </>
             }
         </div>

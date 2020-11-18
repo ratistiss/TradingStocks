@@ -38,6 +38,7 @@ function History() {
     },
     tableContainer: {
       maxWidth:800,
+      maxHeight: 400,
     }
   });
   const classes = useStyles();
@@ -55,7 +56,7 @@ function History() {
       <h2>Balance: ${sessionStorage.getItem("balance")}</h2>
       <div align="center">
         <TableContainer className={classes.tableContainer} component={Paper}>
-            <Table className={classes.table} aria-label="customized table" align="center">
+            <Table className={classes.table} aria-label="customized table" align="center" stickyHeader>
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="center">Ticker</StyledTableCell>

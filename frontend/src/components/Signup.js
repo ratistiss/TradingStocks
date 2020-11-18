@@ -1,28 +1,13 @@
 import React, { useState } from 'react';
 import { postRequest } from './models'
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="primary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Quarantined
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,17 +16,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
+    
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  textfield: {
+    backgroundColor: "white",
+    borderRadius: "5px",
+  },
+  typography : {
+    color: "white",
+    fontWeight: "Bold",
+  }
 }));
 
 export default function Signup() {
@@ -51,10 +41,7 @@ export default function Signup() {
   const classes = useStyles();
 
   const create = async () => {
-    console.log(new_name)
     const data = await postRequest("create", {"username": new_name, "password": pw, "balance": total});
-    // data is likely an object, will need to access a certian key
-    console.log(data)
     this.setToken(data.session_id)
 }
 
@@ -62,28 +49,27 @@ export default function Signup() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-        </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography className={classes.typography} component="h1" variant="h5">
           Sign Up Today!
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} >
               <TextField
+                className={classes.textfield}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
-                autoFocus
+                label="Username"
                 onChange={e => setNew_Name(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.textfield}
                 variant="outlined"
                 required
                 fullWidth
@@ -97,6 +83,7 @@ export default function Signup() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                className={classes.textfield}
                 variant="outlined"
                 required
                 fullWidth
@@ -117,13 +104,8 @@ export default function Signup() {
           >
             Join Us
           </Button>
-          <Grid container justify="flex-end">
-          </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

@@ -4,7 +4,7 @@ const Footer = () => {
 
     return(
         <div className="footer">
-            <h3>Solely for entertainment, no monetary value.</h3>
+            <h3>Entertainment only, no monetary value.</h3>
         </div>
     )
 }

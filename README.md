@@ -7,7 +7,7 @@
 <h2>Built With</h2>
 <ul>
   <li><a href="https://reactjs.org">React</a></li>
-  <li>Flask</li>
-  <li>SQLite</li>
-  <li>BootStrap</li>
+  <li><a href="https://flask.palletsprojects.com/en/1.1.x/#">Flask</a></li>
+  <li><a href="https://www.sqlite.org/index.html">SQLite</a></li>
+  <li><a href="https://react-bootstrap.github.io/getting-started/introduction">React - BootStrap</a></li>
 </ul>

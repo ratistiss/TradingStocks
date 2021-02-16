@@ -6,7 +6,7 @@
 
 <h2>Built With</h2>
 <ul>
-  <li><link href="https://reactjs.org/">React</link></li>
+  <li>[React]{https://reactjs.org/}</link></li>
   <li>Flask</li>
   <li>SQLite</li>
   <li>BootStrap</li>

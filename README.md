@@ -9,5 +9,6 @@
   <li><a href="https://reactjs.org">React</a></li>
   <li><a href="https://flask.palletsprojects.com/en/1.1.x/#">Flask</a></li>
   <li><a href="https://www.sqlite.org/index.html">SQLite</a></li>
-  <li><a href="https://react-bootstrap.github.io/getting-started/introduction">React - BootStrap</a></li>
+  <li><a href="https://material-ui.com/">Material-UI</a></li>
+  <li><a href="https://iexcloud.io/docs/api/">IEX Api</a></li>
 </ul>

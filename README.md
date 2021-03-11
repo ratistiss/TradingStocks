@@ -1,6 +1,6 @@
 <h1>Overview</h1>
 <p>Trading Stocks is a game you can play with your friends or a game you can practice stock market investment strategies with.</p>
-<li><a href='http://164.90.143.154/login'>Hosted</a></li>
+<li><a href='http://164.90.143.154/login'>Website Link</a></li>
 
 
 
